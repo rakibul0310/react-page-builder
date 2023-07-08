@@ -2,6 +2,7 @@ import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import { createPage } from "../redux/actions/pageAction";
+import PageDetail from "./PageDetail";
 
 export default function PageSection({ pages }) {
   const [show, setShow] = useReducer((show) => !show, false);
@@ -81,7 +82,11 @@ export default function PageSection({ pages }) {
           </Modal.Footer>
         </Modal>
       </form>
-      <ul className="list-group pages"></ul>
+      <ul className="list-group pages">
+        {pages.map((page) => (
+          <PageDetail page={page} key={page._id} />
+        ))}
+      </ul>
     </div>
   );
 }
