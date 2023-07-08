@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
+import "grapesjs/dist/css/grapes.min.css";
+import "bootstrap";
 import "./App.scss";
 
 function App() {
