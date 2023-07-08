@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_HOST } from "../utils";
+import Sidebar from "../component/Sidebar";
 
 const Editor = () => {
   const [editor, setEditor] = useState(null);
@@ -29,7 +30,7 @@ const Editor = () => {
           </div>
         </nav>
         <div></div>
-        <div></div>
+        <Sidebar />
       </div>
       <div
         className="main-content position-relative w-85 start-15"
