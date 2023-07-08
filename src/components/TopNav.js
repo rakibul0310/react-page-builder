@@ -1,4 +1,4 @@
-import { toggleSidebar } from "../utils/geditor_utils";
+import { toggleSidebar } from "../api_utils/geditor_utils";
 
 function TopNav() {
   const handleClick = () => {

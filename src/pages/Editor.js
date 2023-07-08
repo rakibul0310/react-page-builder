@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { API_HOST } from "../utils";
-import Sidebar from "../component/Sidebar";
-import TopNav from "../component/TopNav";
-import PageSection from "../component/PageSection";
+import { useSelector } from "react-redux";
+import { API_HOST } from "../api_utils";
+import Sidebar from "../components/Sidebar";
+import TopNav from "../components/TopNav";
+import geditorConfig from "../api_utils/geditor_config";
+import PageSection from "../components/PageSection";
 
 const Editor = () => {
   const [editor, setEditor] = useState(null);
   const [assets, setAssets] = useState([]);
-  const [pages, setPages] = useState([]);
-  const { id } = useParams();
+  const { pageId } = useParams();
+
+  const { pageStore } = useSelector((state) => state);
+  const { pages } = pageStore;
 
   useEffect(() => {
-    const fetchPages = async () => {
-      const response = await axios.get(`${API_HOST}page`);
-      setPages(response.data);
-    };
-    fetchPages();
+    async function getAllAssets() {
+      try {
+        const response = await axios.get(`${API_HOST}assets/`);
+        setAssets(response.data);
+      } catch (error) {
+        setAssets(error.message);
+      }
+    }
+
+    getAllAssets();
   }, []);
 
+  useEffect(() => {
+    const editor = geditorConfig(assets, pageId);
+    setEditor(editor);
+  }, [pageId, assets]);
   return (
     <div className="App">
       <div

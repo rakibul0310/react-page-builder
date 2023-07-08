@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_HOST } from "../../utils/index";
+import { API_HOST } from "../../api_utils";
 
 export const TYPES = {
   LIST_PAGE_REQUEST_SEND: "LIST_PAGE_REQUEST_SEND",
