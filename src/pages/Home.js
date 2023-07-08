@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { API_HOST } from "../utils";
+import { createPage } from "../redux/actions/pageAction";
 
 const Home = () => {
   const [name, setName] = useState("");
-  const [pages, setPages] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchPages = async () => {
-      const response = await axios.get(`${API_HOST}page`);
-      setPages(response.data);
-    };
-    fetchPages();
-  }, []);
+  const { pageStore } = useSelector((state) => state);
+  const { pages } = pageStore;
 
   const handleSubmit = async () => {
     if (!name) {
       setIsValid(false);
       return;
     }
-    const response = await axios.post(`${API_HOST}page`, {
-      name,
-    });
-
-    setPages([...pages, response.data]);
+    createPage(name)(dispatch);
   };
 
   return (
