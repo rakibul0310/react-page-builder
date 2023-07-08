@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_HOST } from "../utils";
 import Sidebar from "../component/Sidebar";
+import TopNav from "../component/TopNav";
+import PageSection from "../component/PageSection";
 
 const Editor = () => {
   const [editor, setEditor] = useState(null);
@@ -29,14 +31,14 @@ const Editor = () => {
             <span className="navbar-brand mb-0 h3 logo">Code Dexterous</span>
           </div>
         </nav>
-        <div></div>
+        <PageSection pages={pages} />
         <Sidebar />
       </div>
       <div
         className="main-content position-relative w-85 start-15"
         id="main-content"
       >
-        <div></div>
+        <TopNav />
         <div id="editor"></div>
       </div>
     </div>
